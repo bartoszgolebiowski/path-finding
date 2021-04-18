@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { createUseStyles } from "react-jss";
 import SingleNet from "./SingleNet";
 
@@ -33,4 +33,4 @@ const RowNet = ({ a, b, n, rowNumber }) => {
   );
 };
 
-export default RowNet;
+export default React.memo(RowNet);

@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { createUseStyles } from "react-jss";
 
 const useStyles = createUseStyles(() => ({
@@ -19,4 +19,4 @@ const SingleNet = ({ a, b, rowNumber, columnNumber }) => {
   return <div id={`${rowNumber}-${columnNumber}`} className={c.cell}></div>;
 };
 
-export default SingleNet;
+export default React.memo(SingleNet);

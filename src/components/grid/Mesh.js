@@ -1,16 +1,13 @@
-import React from "react";
+import * as React from "react";
 import { createUseStyles } from "react-jss";
-import { MESH_HEIGTH, MESH_WIDTH } from "../config/contants";
-import { createObstacles, remvoeObstacles } from "../utils/obstacles";
-import { drawSolution, undrawSolution } from "../utils/solution";
 import RowNet from "./RowNet";
+import { MESH_HEIGTH, MESH_WIDTH } from "../../config/contants";
+import { createObstacles, remvoeObstacles } from "../../utils/obstacles";
+import { drawSolution, undrawSolution } from "../../utils/solution";
 
 const useStyles = createUseStyles(() => ({
   mesh: {
     display: "block",
-    position: "absolute",
-    minWidth: (props) => props.width,
-    maxWidth: (props) => props.width,
     minHeight: (props) => props.height,
     maxHeight: (props) => props.height,
   },

@@ -17,7 +17,7 @@ export const undrawSolution = (path) => {
 
 const markPath = (x, y) => {
   const cell = document.getElementById(`${x}-${y}`);
-  cell.style = "background-color: green;";
+  cell.style = "background-color: red;";
 };
 const unmarkPath = (x, y) => {
   const cell = document.getElementById(`${x}-${y}`);
