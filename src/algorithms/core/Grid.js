@@ -214,29 +214,4 @@ Grid.prototype.getNeighbors = function (node, diagonalMovement) {
   return neighbors;
 };
 
-/**
- * Get a clone of this grid.
- * @return {Grid} Cloned grid.
- */
-Grid.prototype.clone = function () {
-  var i,
-    j,
-    width = this.width,
-    height = this.height,
-    thisNodes = this.nodes,
-    newGrid = new Grid(width, height),
-    newNodes = new Array(height);
-
-  for (i = 0; i < height; ++i) {
-    newNodes[i] = new Array(width);
-    for (j = 0; j < width; ++j) {
-      newNodes[i][j] = new Node(j, i, thisNodes[i][j].walkable);
-    }
-  }
-
-  newGrid.nodes = newNodes;
-
-  return newGrid;
-};
-
 module.exports = Grid;
