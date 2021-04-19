@@ -21,8 +21,8 @@ function App() {
       return undefined;
     }
     const startTime = new Date();
-    const result = finder.findPath(1, 2, 44, 73, grid);  
-    const duration = new Date().getTime() - startTime.getTime(); 
+    const result = finder.findPath(1, 2, 44, 73, grid);
+    const duration = new Date().getTime() - startTime.getTime();
 
     setMetrics({
       length: result.length,

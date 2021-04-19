@@ -1,11 +1,11 @@
 import * as React from "react";
-import BiAStarFinder from "../algorithms/finders/BiAStarFinder";
+import BestFirstFinder from "../algorithms/finders/BestFirstFinder";
 import BreadthFirstFinder from "../algorithms/finders/BreadthFirstFinder";
 import AStarFinder from "../algorithms/finders/AStarFinder";
 
 const alghoritmMap = {
   AStarFinder: new AStarFinder(),
-  BiAStarFinder: new BiAStarFinder(),
+  BestFirstFinder: new BestFirstFinder(),
   BreadthFirstFinder: new BreadthFirstFinder(),
 };
 
@@ -22,7 +22,7 @@ const AlgorithmPicker = ({ onAlgorithmChange }) => {
     <select onChange={handleChange} value={value}>
       <option value=""></option>
       <option value={"AStarFinder"}>AStarFinder</option>
-      <option value={"BiAStarFinder"}>BiAStarFinder</option>
+      <option value={"BestFirstFinder"}>BestFirstFinder</option>
       <option value={"BreadthFirstFinder"}>BreadthFirstFinder</option>
     </select>
   );
