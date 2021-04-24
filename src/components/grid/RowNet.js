@@ -12,7 +12,7 @@ const useStyles = createUseStyles(() => ({
   },
 }));
 
-const RowNet = ({ a, b, n, rowNumber }) => {
+const RowNet = ({ a, b, n, rowNumber, suffix }) => {
   const c = useStyles({
     b: b * n,
     a,
@@ -27,6 +27,7 @@ const RowNet = ({ a, b, n, rowNumber }) => {
           b={b}
           rowNumber={rowNumber}
           columnNumber={index}
+          suffix={suffix}
         />
       ))}
     </div>

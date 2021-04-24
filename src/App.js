@@ -7,7 +7,6 @@ import Mesh from "./components/grid/Mesh";
 function App() {
   const [gridArray, setGridArray] = React.useState();
   const [finder, setFinder] = React.useState();
-  const [metrics, setMetrics] = React.useState({});
 
   const grid = React.useMemo(() => {
     if (gridArray === undefined) {
@@ -16,30 +15,32 @@ function App() {
     return new PF.Grid(gridArray);
   }, [gridArray]);
 
-  const path = React.useMemo(() => {
+  const pathCar1 = React.useMemo(() => {
     if (grid === undefined || finder === undefined) {
       return undefined;
     }
-    const startTime = new Date();
-    const result = finder.findPath(1, 2, 44, 73, grid);
-    const duration = new Date().getTime() - startTime.getTime();
-
-    setMetrics({
-      length: result.length,
-      duration,
-    });
-
-    return result;
+    return finder.findPath(1, 2, 68, 68, grid.clone());
   }, [finder, grid]);
+
+  const pathCar2 = React.useMemo(() => {
+    if (grid === undefined || finder === undefined) {
+      return undefined;
+    }
+    return finder.findPath(68, 68, 1, 2, grid.clone());
+  }, [finder, grid]);
+
+  const isDefined = grid !== undefined || pathCar1 !== undefined;
 
   return (
     <div>
       <AlgorithmPicker onAlgorithmChange={setFinder} />
       <ImagePicker onImageChange={setGridArray} />
-      {grid !== undefined || path !== undefined ? (
-        <Mesh grid={grid} path={path} />
+      {isDefined ? (
+        <Mesh grid={grid.clone()} path={pathCar1} suffix="car-1" />
       ) : null}
-      {JSON.stringify(metrics, null, 2)}
+      {isDefined ? (
+        <Mesh grid={grid.clone()} path={pathCar2} suffix="car-2" />
+      ) : null}
     </div>
   );
 }

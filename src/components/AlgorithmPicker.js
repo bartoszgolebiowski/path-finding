@@ -1,5 +1,5 @@
 import * as React from "react";
-import BestFirstFinder from "../algorithms/finders/BestFirstFinder";
+import BestFirstFinder from "../algorithms/finders/BiAStarFinder";
 import BreadthFirstFinder from "../algorithms/finders/BreadthFirstFinder";
 import AStarFinder from "../algorithms/finders/AStarFinder";
 
