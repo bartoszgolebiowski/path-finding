@@ -11,14 +11,12 @@ const useStyles = createUseStyles(() => ({
   },
 }));
 
-const SingleNet = ({ a, b, rowNumber, columnNumber, suffix }) => {
+const SingleNet = ({ a, b, rowNumber, columnNumber }) => {
   const c = useStyles({
     b,
     a,
   });
-  return (
-    <div id={`${suffix}-${rowNumber}-${columnNumber}`} className={c.cell}></div>
-  );
+  return <div id={`${rowNumber}-${columnNumber}`} className={c.cell}></div>;
 };
 
 export default React.memo(SingleNet);

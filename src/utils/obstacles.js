@@ -1,4 +1,6 @@
-export const createObstacles = (grid, suffix) => {
+import DiagonalMovement from "../algorithms/core/DiagonalMovement";
+
+export const createObstacles = (grid) => {
   const rows = grid.nodes;
 
   for (let y = 0; y < rows.length; y++) {
@@ -6,13 +8,13 @@ export const createObstacles = (grid, suffix) => {
     for (let x = 0; x < row.length; x++) {
       const cell = row[x];
       if (!cell.walkable) {
-        markObstacle(x, y, suffix);
+        markObstacle(x, y);
       }
     }
   }
 };
 
-export const remvoeObstacles = (grid, suffix) => {
+export const remvoeObstacles = (grid) => {
   const rows = grid.nodes;
 
   for (let y = 0; y < rows.length; y++) {
@@ -20,17 +22,18 @@ export const remvoeObstacles = (grid, suffix) => {
     for (let x = 0; x < row.length; x++) {
       const cell = row[x];
       if (!cell.walkable) {
-        unmarkObstacle(x, y, suffix);
+        unmarkObstacle(x, y);
       }
     }
   }
 };
 
-const markObstacle = (x, y, suffix) => {
-  const cell = document.getElementById(`${suffix}-${x}-${y}`);
+const markObstacle = (x, y) => {
+  const cell = document.getElementById(`${x}-${y}`);
   cell.style = "background-color: black;";
 };
-const unmarkObstacle = (x, y, suffix) => {
-  const cell = document.getElementById(`${suffix}-${x}-${y}`);
+
+const unmarkObstacle = (x, y) => {
+  const cell = document.getElementById(`${x}-${y}`);
   cell.style = "background-color: black;";
 };
