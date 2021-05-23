@@ -1,5 +1,3 @@
-import DiagonalMovement from "../algorithms/core/DiagonalMovement";
-
 export const createObstacles = (grid) => {
   const rows = grid.nodes;
 

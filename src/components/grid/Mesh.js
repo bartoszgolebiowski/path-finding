@@ -48,9 +48,9 @@ const Mesh = ({ height = MESH_HEIGTH, width = MESH_WIDTH, grid, paths }) => {
     });
 
     return () => {
-      // paths.forEach((path) => {
-      //   undrawSolution(path);
-      // });
+      paths.forEach((path) => {
+        undrawSolution(path);
+      });
     };
   }, [paths]);
 
