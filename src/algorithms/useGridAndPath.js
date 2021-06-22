@@ -7,10 +7,13 @@ import {
   COORDINATES,
 } from "../config/contants";
 
-const emptyArrays = [...Array(CARS_QUANTITY).keys()].map(() => []);
+const emptyArrays = ()=> [...Array(COORDINATES.length).keys()].map(() => []);
 
 const useGridAndPath = () => {
-  const statisticsRaw = React.useRef(emptyArrays);
+  const statisticsRaw = React.useRef(emptyArrays());
+  const stopsRaw = React.useRef(emptyArrays());
+  const timeRaw = React.useRef(emptyArrays());
+
   const prevPathsRef = React.useRef();
   const [gridArray, setGridArray] = React.useState();
   const [finder, setFinder] = React.useState();
@@ -59,6 +62,7 @@ const useGridAndPath = () => {
         const xTarget = COORDINATES[car][2];
         const yTarget = COORDINATES[car][3];
 
+        const start = new Date().getTime();
         const result = finder.findPath(
           xCurrent,
           yCurrent,
@@ -66,7 +70,7 @@ const useGridAndPath = () => {
           yTarget,
           currentGrid.clone()
         );
-
+        const end = new Date().getTime()
         const steps = result.filter(
           (_, index) => index < AHEAD_PREDICTION_STEPS
         );
@@ -75,12 +79,17 @@ const useGridAndPath = () => {
           currentGrid.setWalkableAt(node[0], node[1], false);
         });
 
+        const duration = (end-start)/1000
+        let timeStatistics = timeRaw.current[car];
+        timeStatistics.push(duration);
+
         if (xCurrent !== xTarget && yCurrent !== yTarget) {
           let carStatistics = statisticsRaw.current[car];
           carStatistics.push(steps);
         }
 
         if (result.length === 0) {
+          stopsRaw.current[car] = Number(stopsRaw.current[car]) + 1;
           return [
             [xCurrent, yCurrent],
             [xCurrent, yCurrent],
@@ -102,16 +111,31 @@ const useGridAndPath = () => {
   const isDefined = grid !== undefined || pathCars !== undefined;
 
   const showStatistics = () => {
+    const statistics = []
     statisticsRaw.current.forEach((singleCarPath, carNumber) => {
-      const data = {
-        carNumber,
-        length: singleCarPath.length,
-      };
-      console.table(data);
+      const data =  singleCarPath.length
+      statistics.push(data)
     });
+    const stopsArr = []
+    stopsRaw.current.forEach((stops, carNumber) => {
+      stopsArr.push(stops)
+    });
+    const timeArr = []
+    timeRaw.current.forEach((time, carNumber) => {
+      const average = time.reduce((acc,el)=>{return acc + el},0) / time.length
+      timeArr.push(average)
+    });
+
+    console.log(JSON.stringify(statistics))
+    console.log(JSON.stringify(stopsArr))
+    console.log(JSON.stringify(timeArr))
   };
 
-  const incrementIteration = () => setIteration((iteration) => iteration + 1);
+  const incrementIteration = React.useCallback(() => {
+    setInterval(()=>{
+      setIteration((iteration) => iteration + 1)
+    },100)
+  },[]);
 
   return {
     isDefined,

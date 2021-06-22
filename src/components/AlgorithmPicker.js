@@ -21,9 +21,9 @@ const AlgorithmPicker = ({ onAlgorithmChange }) => {
   return (
     <select onChange={handleChange} value={value}>
       <option value=""></option>
-      <option value={"AStarFinder"}>AStarFinder</option>
-      <option value={"BestFirstFinder"}>BestFirstFinder</option>
-      <option value={"BreadthFirstFinder"}>BreadthFirstFinder</option>
+      <option value={"AStarFinder"}>AStar</option>
+      <option value={"BestFirstFinder"}>BestFirst</option>
+      <option value={"BreadthFirstFinder"}>BreadthFirst</option>
     </select>
   );
 };

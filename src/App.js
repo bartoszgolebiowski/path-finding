@@ -13,7 +13,6 @@ function App() {
     showStatistics,
     setFinder,
     setGridArray,
-    statistics,
   } = useGridAndPath();
 
   return (

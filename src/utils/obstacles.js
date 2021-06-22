@@ -25,7 +25,10 @@ export const remvoeObstacles = (grid) => {
     }
   }
 };
-
+export const getRandomRgb = ()=> {
+  var o = Math.round, r = Math.random, s = 255;
+  return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + r().toFixed(1) + ')';
+}
 const markObstacle = (x, y) => {
   const cell = document.getElementById(`${x}-${y}`);
   cell.style = "background-color: black;";
